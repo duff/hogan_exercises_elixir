@@ -1,2 +1,0 @@
-defmodule HoganExercisesElixir do
-end
