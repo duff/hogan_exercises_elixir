@@ -5,8 +5,7 @@ defmodule CountingChars do
   end
 
   def go do
-    input = retrieve_input
-    case input do
+    case input = retrieve_input do
       "" -> IO.puts "You need to enter some input!"; go
       _  -> IO.puts "#{input} has #{input |> String.length} characters."
     end

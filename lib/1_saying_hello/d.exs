@@ -1,18 +1,18 @@
 defmodule SayingHello do
 
-  def retrieve_name do
+  defp retrieve_name do
     IO.gets("What is your name? ") |> String.strip
   end
 
-  def response("Joe") do
+  defp response("Joe") do
     "Yo, Joe, what's up?"
   end
 
-  def response("Fred") do
+  defp response("Fred") do
     "Fred! How goes it?"
   end
 
-  def response(name) do
+  defp response(name) do
     "Hello, #{name}, nice to meet you!"
   end
 
