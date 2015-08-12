@@ -1,6 +1,6 @@
 defmodule SimpleMath do
 
-  def retrieve_amount(prompt) do
+  defp retrieve_amount(prompt) do
     input = IO.gets(prompt) |> String.strip
     case Float.parse(input) do
       { amount, _ } when amount < 0 ->

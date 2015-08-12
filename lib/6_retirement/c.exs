@@ -13,14 +13,17 @@ defmodule Retirement do
     end
   end
 
+  defp respond_to(diff) when diff < 0, do: IO.puts "You're already retired"
+  defp respond_to(diff) do
+    { current_year, _, _ } = :erlang.date
+    IO.puts "You have #{diff} years left until you can retire."
+    IO.puts "It's #{current_year}, so you can retire in #{current_year + diff}."
+  end
+
   def go do
     current_age = retrieve_amount("What is your current age? ")
     retirement_age = retrieve_amount("At what age would you like to retire? ")
-    diff = retirement_age - current_age
-
-    { current_year, _, _ } = :erlang.date
-    IO.puts "You have #{diff} years left until you can retire."
-    IO.puts "It's #{current_year}, so you can retire in #{current_year + diff}"
+    respond_to(retirement_age - current_age)
   end
 
 end

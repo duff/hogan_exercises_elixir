@@ -1,6 +1,6 @@
 defmodule CountingChars do
 
-  def retrieve_input do
+  defp retrieve_input do
     IO.gets("What is the input string? ") |> String.strip
   end
 

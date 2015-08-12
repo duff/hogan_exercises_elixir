@@ -1,6 +1,6 @@
 defmodule Retirement do
 
-  def retrieve_amount(prompt) do
+  defp retrieve_amount(prompt) do
     input = IO.gets(prompt) |> String.strip
     case Integer.parse(input) do
       { amount, _ } when amount < 0 ->
@@ -21,7 +21,7 @@ defmodule Retirement do
     if diff < 0 do
       IO.puts "You're already retired"
     else
-      {{ current_year, _, _ }, _ } = :calendar.universal_time()
+      { current_year, _, _ } = :erlang.date
       IO.puts "You have #{diff} years left until you can retire."
       IO.puts "It's #{current_year}, so you can retire in #{current_year + diff}."
     end
