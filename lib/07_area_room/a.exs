@@ -24,8 +24,8 @@ defmodule AreaRoom do
     IO.puts "You entered dimensions of #{length} feet by #{width} feet"
     IO.puts """
     The area is
-    #{Float.round(square_feet, 3)} square feet
-    #{Float.round(square_meters, 3)} square meters
+    #{Float.to_string(square_feet, decimals: 3, compact: true)} square feet
+    #{Float.to_string(square_meters, decimals: 3, compact: true)} square meters
     """
   end
 

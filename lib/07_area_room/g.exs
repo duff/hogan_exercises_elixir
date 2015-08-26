@@ -49,6 +49,10 @@ defmodule AreaRoom do
     end
   end
 
+  def display(float) do
+    Float.to_string(float, decimals: 3, compact: true)
+  end
+
   def go do
     length = retrieve_amount("What is the length of the room? ")
     width = retrieve_amount("What is the width of the room? ")
@@ -59,8 +63,8 @@ defmodule AreaRoom do
     IO.puts """
 
     The area is
-    #{Measurement.square_feet(length, width)} square feet
-    #{Measurement.square_meters(length, width)} square meters
+    #{Measurement.square_feet(length, width) |> display} square feet
+    #{Measurement.square_meters(length, width) |> display} square meters
     """
   end
 
