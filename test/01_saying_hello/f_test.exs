@@ -1,5 +1,5 @@
 defmodule SayingHello.F.Test do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
   test "go" do
@@ -9,8 +9,8 @@ defmodule SayingHello.F.Test do
   end
 
   defp assert_response(input, expected_output) do
-    only_captured_output = capture_io([input: input, capture_prompt: false], &SayingHello.F.go/0) |> String.strip
-    assert only_captured_output == expected_output
+    captured = capture_io([input: input, capture_prompt: false], &SayingHello.F.go/0) |> String.strip
+    assert captured == expected_output
   end
 
 end

@@ -1,4 +1,4 @@
-defmodule CountingChars do
+defmodule CountingChars.B do
 
   defp retrieve_input do
     IO.gets("What is the input string? ") |> String.strip
@@ -12,5 +12,3 @@ defmodule CountingChars do
   end
 
 end
-
-CountingChars.go
