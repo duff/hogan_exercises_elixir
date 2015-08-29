@@ -1,10 +1,10 @@
-defmodule SayingHello do
+defmodule SayingHello.F do
 
-  def retrieve_name do
+  defp retrieve_name do
     IO.gets("What is your name? ") |> String.strip
   end
 
-  def response(name) do
+  defp response(name) do
     case name do
       "Joe"  -> "Yo, #{name}, what's up?"
       "Fred" -> "#{name}! How goes it?"
@@ -17,4 +17,3 @@ defmodule SayingHello do
   end
 end
 
-SayingHello.go

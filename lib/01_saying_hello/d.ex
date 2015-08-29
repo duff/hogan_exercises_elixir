@@ -1,4 +1,4 @@
-defmodule SayingHello do
+defmodule SayingHello.D do
 
   defp retrieve_name do
     IO.gets("What is your name? ") |> String.strip
@@ -20,6 +20,3 @@ defmodule SayingHello do
     retrieve_name |> response |> IO.puts
   end
 end
-
-SayingHello.go
-
