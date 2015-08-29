@@ -1,4 +1,4 @@
-defmodule SimpleMath do
+defmodule SimpleMath.B do
 
   defp retrieve_amount(prompt) do
     input = IO.gets(prompt) |> String.strip
@@ -29,5 +29,3 @@ defmodule SimpleMath do
   end
 
 end
-
-SimpleMath.go
