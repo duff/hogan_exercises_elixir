@@ -21,8 +21,8 @@ defmodule AreaRoom do
     square_feet = length * width
     square_meters = square_feet * @conversion_factor
 
-    IO.puts "You entered dimensions of #{length} feet by #{width} feet"
     IO.puts """
+    You entered dimensions of #{length} feet by #{width} feet
     The area is
     #{Float.to_string(square_feet, decimals: 3, compact: true)} square feet
     #{Float.to_string(square_meters, decimals: 3, compact: true)} square meters
