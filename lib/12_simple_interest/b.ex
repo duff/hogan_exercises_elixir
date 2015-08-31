@@ -1,10 +1,7 @@
 defmodule SimpleInterest.B do
 
   import NumberRetriever
-
-  defp display(total) do
-    total |> Float.ceil(2) |> Float.to_string(decimals: 2)
-  end
+  import Money
 
   def go do
     principal = retrieve_float("Enter the principal: ")
@@ -19,7 +16,7 @@ defmodule SimpleInterest.B do
     end)
 
     IO.puts "-----------"
-    IO.puts "After #{years} years at #{interest_rate}%, the investment will be worth $#{display(total)}."
+    IO.puts "After #{years} years at #{interest_rate}%, the investment will be worth #{as_money(total)}."
   end
 
 end
