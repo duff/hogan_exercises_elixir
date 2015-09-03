@@ -1,4 +1,4 @@
-defmodule AreaRoom.B.Test do
+defmodule AreaRoom.D.Test do
   use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
@@ -37,7 +37,7 @@ defmodule AreaRoom.B.Test do
 
   defp captured(input_strings) do
     input = input_strings |> Enum.join("\n")
-    capture_io([input: input, capture_prompt: false], &AreaRoom.B.go/0) |> String.strip
+    capture_io([input: input, capture_prompt: false], &AreaRoom.D.go/0) |> String.strip
   end
 
 end
