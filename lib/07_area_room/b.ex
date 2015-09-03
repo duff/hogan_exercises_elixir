@@ -31,13 +31,13 @@ defmodule AreaRoom.B do
     length_in_feet = feet(length, length_units)
     width_in_feet = feet(width, width_units)
 
-    IO.puts "You entered dimensions of #{display(length, length_units)} by #{display(width, width_units)}."
-    IO.puts "That's #{length_in_feet} feet by #{width_in_feet} feet."
-
     square_feet = length_in_feet * width_in_feet
     square_meters = square_feet * @conversion_factor
 
     IO.puts """
+
+    You entered dimensions of #{display(length, length_units)} by #{display(width, width_units)}.
+    That's #{length_in_feet} feet by #{width_in_feet} feet.
 
     The area is
     #{Float.to_string(square_feet, decimals: 3, compact: true)} square feet
