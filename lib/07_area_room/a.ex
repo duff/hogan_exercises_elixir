@@ -1,4 +1,4 @@
-defmodule AreaRoom do
+defmodule AreaRoom.A do
 
   @conversion_factor 0.09290304
 
@@ -30,5 +30,3 @@ defmodule AreaRoom do
   end
 
 end
-
-AreaRoom.go
