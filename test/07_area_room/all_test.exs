@@ -1,6 +1,6 @@
 defmodule AreaRoom.All.Test do
   use ExUnit.Case, async: true
-  import ExUnit.CaptureIO
+  use CaptureIOSupport
 
   test "go" do
     Enum.each [ AreaRoom.B, AreaRoom.C, AreaRoom.D, AreaRoom.E, AreaRoom.F, AreaRoom.G ], fn(each) ->
@@ -24,14 +24,8 @@ defmodule AreaRoom.All.Test do
     assert_area module, ["10m", "123f"], "4035.433 square feet\n374.904 square meters"
   end
 
-  defp assert_area(module, input_strings, expected_result_regex) do
-    result = captured(module, input_strings)
-    assert String.match?(result, ~r/#{expected_result_regex}/ms), "#{module}\n - #{result}"
-  end
-
-  defp captured(module, input_strings) do
-    input = input_strings |> Enum.join("\n")
-    capture_io([input: input, capture_prompt: false], &module.go/0) |> String.strip
+  defp assert_area(module, input, expected_result) do
+    assert_io_result &module.go/0, input, ~r/#{expected_result}/ms
   end
 
 end

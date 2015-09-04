@@ -1,15 +1,10 @@
 defmodule CountingChars.C.Test do
   use ExUnit.Case, async: true
-  import ExUnit.CaptureIO
+  use CaptureIOSupport, function: &CountingChars.C.go/0
 
   test "go" do
-    assert_response("Homer", "Homer has 5 characters.")
-    assert_response("This is great", "This is great has 13 characters.")
-  end
-
-  defp assert_response(input, expected_output) do
-    captured = capture_io([input: input, capture_prompt: false], &CountingChars.C.go/0) |> String.strip
-    assert captured == expected_output
+    assert_io_result "Homer", "Homer has 5 characters."
+    assert_io_result "This is great", "This is great has 13 characters."
   end
 
 end
