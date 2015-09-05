@@ -4,7 +4,6 @@ defmodule CaptureIOSupport do
 
   defmacro __using__(opts) do
     function = Keyword.get(opts, :function)
-
     quote do
       import CaptureIOSupport
       @function_to_call unquote(function)
