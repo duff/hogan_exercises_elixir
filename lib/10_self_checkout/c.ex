@@ -1,6 +1,6 @@
 defmodule SelfCheckout.C do
 
-  import NumberRetriever
+  import InputRetriever
 
   defp display(name, amount) do
     IO.puts "#{name}: $#{amount |> Float.round(2) |> Float.to_string([decimals: 2])}"

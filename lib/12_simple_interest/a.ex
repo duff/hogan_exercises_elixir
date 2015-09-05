@@ -1,6 +1,6 @@
 defmodule SimpleInterest.A do
 
-  import NumberRetriever
+  import InputRetriever
   import Money
 
   def go do

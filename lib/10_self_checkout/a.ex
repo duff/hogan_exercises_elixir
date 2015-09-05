@@ -1,6 +1,6 @@
 defmodule SelfCheckout.A do
 
-  import NumberRetriever
+  import InputRetriever
 
   def go do
     price_1 = retrieve_float("Price of item 1: ")

@@ -1,6 +1,6 @@
 defmodule CurrencyConversion.A do
 
-  import NumberRetriever
+  import InputRetriever
 
   def go do
     euros = retrieve_float("How many euros are you exchanging? ")

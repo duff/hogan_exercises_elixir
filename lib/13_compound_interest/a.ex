@@ -1,6 +1,6 @@
 defmodule CompoundInterest.A do
 
-  import NumberRetriever
+  import InputRetriever
   import Money
 
   def go do

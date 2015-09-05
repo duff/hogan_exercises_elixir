@@ -1,6 +1,6 @@
 defmodule TaxCalculator.C do
 
-  import NumberRetriever
+  import InputRetriever
   import Money
 
   defp output(state, order_amount) when state in ["wi", "wisconsin"] do
@@ -18,7 +18,7 @@ defmodule TaxCalculator.C do
 
   def go do
     order_amount = retrieve_float("What is the order amount? ")
-    state = IO.gets("What is the state? ") |> String.strip |> String.downcase
+    state = retrieve_string("What is the state? ") |> String.downcase
     output(state, order_amount)
   end
 

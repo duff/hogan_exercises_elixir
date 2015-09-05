@@ -1,11 +1,11 @@
 defmodule TaxCalculator.B do
 
-  import NumberRetriever
+  import InputRetriever
   import Money
 
   def go do
     total = retrieve_float("What is the order amount? ")
-    state = IO.gets("What is the state? ") |> String.strip
+    state = retrieve_string("What is the state? ")
     if state == "WI" do
       tax = total * 0.055
       IO.puts "The subtotal is #{total |> as_money}."

@@ -1,13 +1,11 @@
 defmodule PasswordValidation.A do
 
+  import InputRetriever
+
   @credentials %{
     "Fred" => "ValidFredPassword",
     "Joe" => "LegitJoePwd"
   }
-
-  defp retrieve_string(prompt) do
-    IO.gets(prompt) |> String.strip
-  end
 
   def go do
     username = retrieve_string("What is the username? ")

@@ -1,6 +1,6 @@
 defmodule LegalDrivingAge.A do
 
-  import NumberRetriever
+  import InputRetriever
 
   defp message_for_age(age) when age < 16 do
     "You are not old enough to legally drive."

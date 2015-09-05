@@ -1,6 +1,6 @@
 defmodule CurrencyConversion.B do
 
-  import NumberRetriever
+  import InputRetriever
 
   def exchange_rate_from_api do
     url = "https://openexchangerates.org/api/latest.json?app_id=12812062b1be42e3ba3fc3de29d0651b"

@@ -21,7 +21,7 @@ defmodule LegalDrivingAge.B do
     [ "Indonesia", 17 ]
   ]
 
-  import NumberRetriever
+  import InputRetriever
 
   defp legal_countries(your_age) do
     @country_ages

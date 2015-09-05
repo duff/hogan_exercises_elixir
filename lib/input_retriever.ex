@@ -1,4 +1,4 @@
-defmodule NumberRetriever do
+defmodule InputRetriever do
 
   defp error_tuple(type) do
     type_str = type |> to_string |> String.replace(~r/Elixir\./, "") |> String.downcase
@@ -15,7 +15,7 @@ defmodule NumberRetriever do
   end
 
   defp retrieve(prompt, type) do
-    parsed = IO.gets(prompt) |> String.strip |> type.parse
+    parsed = retrieve_string(prompt) |> type.parse
     case process_number(parsed, type) do
       { :ok, amount } -> amount
       { :error, message } ->
@@ -31,4 +31,9 @@ defmodule NumberRetriever do
   def retrieve_integer(prompt) do
     retrieve(prompt, Integer)
   end
+
+  def retrieve_string(prompt) do
+    IO.gets(prompt) |> String.strip
+  end
+
 end

@@ -1,5 +1,6 @@
 defmodule PasswordValidation.B do
 
+  import InputRetriever
   alias Comeonin.Bcrypt
 
   @salt "$2b$04$AtcNswT8/nuoGxB9ll5Q.e"
@@ -8,10 +9,6 @@ defmodule PasswordValidation.B do
     "Fred" => Bcrypt.hashpass("ValidFredPassword", @salt),
     "Joe"  => Bcrypt.hashpass("LegitJoePwd", @salt)
   }
-
-  defp retrieve_string(prompt) do
-    IO.gets(prompt) |> String.strip
-  end
 
   def go do
     username = retrieve_string("What is the username? ")

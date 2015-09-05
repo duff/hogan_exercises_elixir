@@ -1,6 +1,6 @@
 defmodule TaxCalculator.A do
 
-  import NumberRetriever
+  import InputRetriever
   import Money
 
   defp output("WI", order_amount) do
@@ -18,7 +18,7 @@ defmodule TaxCalculator.A do
 
   def go do
     order_amount = retrieve_float("What is the order amount? ")
-    state = IO.gets("What is the state? ") |> String.strip
+    state = retrieve_string("What is the state? ")
     output(state, order_amount)
   end
 
