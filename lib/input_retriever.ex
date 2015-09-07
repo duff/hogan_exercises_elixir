@@ -36,4 +36,14 @@ defmodule InputRetriever do
     IO.gets(prompt) |> String.strip
   end
 
+  def retrieve_string(prompt, allowed_values) do
+    captured = IO.gets(prompt) |> String.strip
+    if captured in allowed_values do
+      captured
+    else
+      IO.puts "Invalid entry of #{captured}.  Only #{inspect allowed_values} are allowed.  Try again."
+      retrieve_string(prompt, allowed_values)
+    end
+  end
+
 end
