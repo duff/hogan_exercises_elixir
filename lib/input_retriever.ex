@@ -24,26 +24,28 @@ defmodule InputRetriever do
     end
   end
 
-  def retrieve_float(prompt) do
-    retrieve(prompt, Float)
-  end
-
-  def retrieve_integer(prompt) do
-    retrieve(prompt, Integer)
-  end
-
-  def retrieve_string(prompt) do
-    IO.gets(prompt) |> String.strip
-  end
-
-  def retrieve_string(prompt, allowed_values) do
-    captured = IO.gets(prompt) |> String.strip
+  defp confirm_allowed(captured, allowed_values, fun) do
     if captured in allowed_values do
       captured
     else
       IO.puts "Invalid entry of #{captured}.  Only #{inspect allowed_values} are allowed.  Try again."
-      retrieve_string(prompt, allowed_values)
+      fun.()
     end
+  end
+
+  def retrieve_float(prompt), do: retrieve(prompt, Float)
+  def retrieve_integer(prompt), do: retrieve(prompt, Integer)
+
+  def retrieve_integer(prompt, allowed_values) do
+    retrieve(prompt, Integer)
+    |> confirm_allowed(allowed_values, fn -> retrieve_integer(prompt, allowed_values) end)
+  end
+
+  def retrieve_string(prompt), do: IO.gets(prompt) |> String.strip
+
+  def retrieve_string(prompt, allowed_values) do
+    retrieve_string(prompt)
+    |> confirm_allowed(allowed_values, fn -> retrieve_string(prompt, allowed_values) end)
   end
 
 end

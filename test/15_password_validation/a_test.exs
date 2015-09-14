@@ -15,11 +15,11 @@ defmodule PasswordValidation.A.Test do
 
 
   defp assert_login_successful(login, password) do
-    assert_io_result [login, password], "You may pass"
+    assert_io [login, password], "You may pass"
   end
 
   defp assert_login_failed(login, password) do
-    assert_io_result [login, password], "I never knew ye"
+    assert_io [login, password], "I never knew ye"
   end
 
 end

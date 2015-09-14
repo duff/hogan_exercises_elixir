@@ -25,7 +25,7 @@ defmodule AreaRoom.All.Test do
   end
 
   defp assert_area(module, input, expected_result) do
-    assert_io_result &module.go/0, input, ~r/#{expected_result}/ms
+    assert_io &module.go/0, input, ~r/#{expected_result}/ms
   end
 
 end

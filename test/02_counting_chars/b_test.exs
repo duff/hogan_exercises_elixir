@@ -3,8 +3,8 @@ defmodule CountingChars.B.Test do
   use CaptureIOSupport, function: &CountingChars.B.go/0
 
   test "go" do
-    assert_io_result "Homer", "Homer has 5 characters."
-    assert_io_result "This is great", "This is great has 13 characters."
+    assert_io "Homer", "Homer has 5 characters."
+    assert_io "This is great", "This is great has 13 characters."
   end
 
 end

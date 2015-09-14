@@ -10,18 +10,18 @@ defmodule CaptureIOSupport do
     end
   end
 
-  defmacro assert_io_result(input, expected_result_regex) do
+  defmacro assert_io(input, expected_result_regex) do
     quote do
-      assert_io_result(@function_to_call, unquote(input), unquote(expected_result_regex))
+      assert_io(@function_to_call, unquote(input), unquote(expected_result_regex))
     end
   end
 
-  def assert_io_result(function, input, expected_result) when is_binary(expected_result) do
+  def assert_io(function, input, expected_result) when is_binary(expected_result) do
     result = captured(function, input)
     assert String.contains?(result, expected_result), "Unexpected capture:\n#{result}"
   end
 
-  def assert_io_result(function, input, expected_result) do
+  def assert_io(function, input, expected_result) do
     result = captured(function, input)
     assert String.match?(result, expected_result), "Unexpected capture:\n#{result}"
   end
