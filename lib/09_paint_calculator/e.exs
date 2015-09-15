@@ -64,7 +64,7 @@ defmodule PaintCalculator do
     IO.puts """
 
     You will need to purchase #{gallons_needed} gallons of
-    paint to cover #{area |> Float.round(2)} square feet.
+    paint to cover #{area |> Float.round(2) |> Float.to_string(decimals: 2)} square feet.
     """
   end
 
