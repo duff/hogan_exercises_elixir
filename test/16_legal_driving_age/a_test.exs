@@ -8,11 +8,11 @@ defmodule LegalDrivingAge.A.Test do
   end
 
   test "must be a number" do
-    assert_io ["abc", "3"], ~r/enter a valid integer.* not old enough/ms
+    assert_io ["abc", "3"], ~r/enter a valid integer.* not old enough/s
   end
 
   test "negative numbers" do
-    assert_io ["-3", "98"], ~r/No negatives allowed.* are old enough/ms
+    assert_io ["-3", "98"], ~r/No negatives allowed.* are old enough/s
   end
 
 end
