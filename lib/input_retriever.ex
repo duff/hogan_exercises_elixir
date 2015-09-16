@@ -10,12 +10,20 @@ defmodule InputRetriever do
       { amount, _ } when amount < 0 -> { :error, "No negatives allowed!.  Try again." }
       { amount, "" } -> { :ok, amount }
       { _, _ }       -> error_tuple(type)
+      :eof           -> { :ok, :eof }
       :error         -> error_tuple(type)
     end
   end
 
+  defp parse(retrieved, type) do
+    case retrieved do
+      :eof -> :eof
+      value -> type.parse(value)
+    end
+  end
+
   defp retrieve(prompt, type) do
-    parsed = retrieve_string(prompt) |> type.parse
+    parsed = retrieve_string(prompt) |> parse(type)
     case process_number(parsed, type) do
       { :ok, amount } -> amount
       { :error, message } ->
@@ -41,7 +49,12 @@ defmodule InputRetriever do
     |> confirm_allowed(allowed_values, fn -> retrieve_integer(prompt, allowed_values) end)
   end
 
-  def retrieve_string(prompt), do: IO.gets(prompt) |> String.strip
+  def retrieve_string(prompt) do
+    case IO.gets(prompt) do
+      :eof -> :eof
+      value -> String.strip(value)
+    end
+  end
 
   def retrieve_string(prompt, allowed_values) do
     retrieve_string(prompt)
