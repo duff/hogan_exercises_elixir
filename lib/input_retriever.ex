@@ -32,11 +32,32 @@ defmodule InputRetriever do
     end
   end
 
-  defp confirm_allowed(captured, allowed_values, fun) do
-    if captured in allowed_values do
-      captured
+  defp validate_allowed(value, nil, _), do: value
+  defp validate_allowed(value, allowed_values, fun) do
+    if value in allowed_values do
+      value
     else
-      IO.puts "Invalid entry of #{captured}.  Only #{inspect allowed_values} are allowed.  Try again."
+      IO.puts "Invalid entry of #{value}.  Only #{inspect allowed_values} are allowed.  Try again."
+      fun.()
+    end
+  end
+
+  defp validate_min_length(value, nil, _), do: value
+  defp validate_min_length(value, length, fun) do
+    if String.length(value) >= length do
+      value
+    else
+      IO.puts "Too short.  Try again."
+      fun.()
+    end
+  end
+
+  defp validate_required(value, false, _), do: value
+  defp validate_required(value, true, fun) do
+    if String.length(value) > 0 do
+      value
+    else
+      IO.puts "Cannot be blank.  Try again."
       fun.()
     end
   end
@@ -44,9 +65,9 @@ defmodule InputRetriever do
   def retrieve_float(prompt), do: retrieve(prompt, Float)
   def retrieve_integer(prompt), do: retrieve(prompt, Integer)
 
-  def retrieve_integer(prompt, allowed_values) do
+  def retrieve_integer(prompt, opts = [in: allowed_values]) do
     retrieve(prompt, Integer)
-    |> confirm_allowed(allowed_values, fn -> retrieve_integer(prompt, allowed_values) end)
+    |> validate_allowed(allowed_values, fn -> retrieve_integer(prompt, opts) end)
   end
 
   def retrieve_string(prompt) do
@@ -56,9 +77,17 @@ defmodule InputRetriever do
     end
   end
 
-  def retrieve_string(prompt, allowed_values) do
-    retrieve_string(prompt)
-    |> confirm_allowed(allowed_values, fn -> retrieve_string(prompt, allowed_values) end)
+  def retrieve_string(prompt, opts) do
+    value = retrieve_string(prompt)
+    allowed_values = Keyword.get(opts, :in)
+    required = Keyword.has_key?(opts, :required)
+    min_length = Keyword.get(opts, :min_length)
+    fun = fn -> retrieve_string(prompt, opts) end
+
+    value
+    |> validate_required(required, fun)
+    |> validate_allowed(allowed_values, fun)
+    |> validate_min_length(min_length, fun)
   end
 
 end

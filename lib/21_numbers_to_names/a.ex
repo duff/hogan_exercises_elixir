@@ -5,7 +5,7 @@ defmodule NumbersToNames.A do
   @months ~w(January February March April May June July August September October November December)
 
   def go do
-    number = retrieve_integer("Please enter the number of the month: ", 1..12)
+    number = retrieve_integer("Please enter the number of the month: ", in: 1..12)
     IO.puts "The name of the month is #{@months |> Enum.at(number - 1)}."
   end
 

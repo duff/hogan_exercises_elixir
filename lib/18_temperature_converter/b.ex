@@ -16,7 +16,7 @@ defmodule TemperatureConverter.B do
     Press F to convert from Celsius to Fahrenheit.
     """
 
-    convert_to = retrieve_string("Your choice: ", ~w[C c F f])
+    convert_to = retrieve_string("Your choice: ", in: ~w[C c F f])
     { from, to, converter } = from_to_converter(convert_to)
 
     temp = retrieve_float("Please enter the temperature in #{from}: ")

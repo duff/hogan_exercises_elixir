@@ -3,7 +3,7 @@ defmodule TroubleshootCar.A do
   import InputRetriever
 
   defp yes_no(prompt) do
-    retrieve_string(prompt, ~w(y n)) == "y"
+    retrieve_string(prompt, in: ~w(y n)) == "y"
   end
 
   defp silent(true) do

@@ -15,8 +15,8 @@ defmodule NumbersToNames.B do
   end
 
   def go do
-    language = retrieve_string("Which language (en | da | es)? ", ~w(en da es))
-    number = retrieve_integer("Please enter the number of the month: ", 1..12)
+    language = retrieve_string("Which language (en | da | es)? ", in: ~w(en da es))
+    number = retrieve_integer("Please enter the number of the month: ", in: 1..12)
     IO.puts "The name of the month is #{months(language) |> Enum.at(number - 1)}."
   end
 
