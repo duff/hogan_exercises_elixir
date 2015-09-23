@@ -52,6 +52,16 @@ defmodule InputRetriever do
     end
   end
 
+  defp validate_format(value, nil, _), do: value
+  defp validate_format(value, format, fun) do
+    if Regex.match?(format, value) do
+      value
+    else
+      IO.puts "Invalid format.  Try again."
+      fun.()
+    end
+  end
+
   defp validate_required(value, false, _), do: value
   defp validate_required(value, true, fun) do
     if String.length(value) > 0 do
@@ -82,12 +92,14 @@ defmodule InputRetriever do
     allowed_values = Keyword.get(opts, :in)
     required = Keyword.has_key?(opts, :required)
     min_length = Keyword.get(opts, :min_length)
+    format = Keyword.get(opts, :format)
     fun = fn -> retrieve_string(prompt, opts) end
 
     value
     |> validate_required(required, fun)
     |> validate_allowed(allowed_values, fun)
     |> validate_min_length(min_length, fun)
+    |> validate_format(format, fun)
   end
 
 end
