@@ -37,10 +37,10 @@ defmodule GuessNumber.A do
     end
   end
 
-  def go do
+  defp play do
     IO.puts """
 
-    Difficulty Levels: 
+    Difficulty Levels:
         1 -> (1..10)
         2 -> (1..100)
         3 -> (1..1000)
@@ -52,6 +52,14 @@ defmodule GuessNumber.A do
 
     count = evaluate_guesses(target)
     IO.puts "You got it in #{count} guesses!"
+  end
+
+  def go do
+    play
+    case retrieve_string("Play again? ", in: ~w(y n)) do
+      "y" -> go
+      _ -> IO.puts "Goodbye!"
+    end
   end
 
 end
