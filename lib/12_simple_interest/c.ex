@@ -1,4 +1,4 @@
-defmodule SimpleInterest.B do
+defmodule SimpleInterest.C do
 
   import InputRetriever
   import Money
@@ -10,13 +10,15 @@ defmodule SimpleInterest.B do
     interest_earned_per_year = principal * (interest_rate / 100)
     total = principal * (1 + (years * (interest_rate / 100)))
 
-    Enum.reduce(1..(years - 1), principal, fn(each, acc) ->
-      year_total = acc+interest_earned_per_year
-      IO.puts "After #{each} years, your total is #{as_money(year_total)}"
-      year_total
+    { year_totals, _ } = Enum.map_reduce(1..(years - 1), principal, fn(each, acc) ->
+      year_total = acc + interest_earned_per_year
+      { { each, year_total }, year_total }
     end)
 
-    IO.puts "-----------"
+    Enum.each year_totals, fn({ each, year_total }) ->
+      IO.puts "After #{each} years, your total is #{as_money(year_total)}"
+    end
+
     IO.puts "After #{years} years at #{interest_rate}%, the investment will be worth #{as_money(total)}."
   end
 
